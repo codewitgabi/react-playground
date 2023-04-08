@@ -1,13 +1,132 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hr {
+  margin-bottom: 10px;
+  background: #6e7a31;
+  border: 1.5px solid orange;
+}
+.product-container {
+  box-shadow: hsl(0,0%,80%) 0 0 10px;
+  padding: 10px;
+  font-size: 1.2rem;
+  position: relative;
+  margin: 0.5em 0;
+  text-align: center;
+}
+.tag {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #6e7a31;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 5px;
+  font-size: 0.8rem;
+  z-index: 9999;
+}
+.add-to-cart {
+  text-align: center;
+  display: inline-block;
+  margin-top: 0.5em;
+  background: #004493;
+  color: #fff;
+  padding: 5px 20px;
+  border: 2px solid #add2fa;
+}
+.add-to-cart > span {
+  margin-left: 0.2em;
+  font-size: 1rem;
+  color: red;
+}
+.product-image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.prod-name {
+  font-weight: 700;
+}
+.product-container small {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+.row {
+  width: 900px;
+  margin: 1em auto;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.col {
+  width: 23.4%;
+  margin-left: 1.6%;
+  float: left;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@media only screen and (max-width: 675px) {
+  .col {
+    width: 47.5%;
+    margin: 1%;
+  }
+  .row {
+    width: fit-content;
+    margin: 1em;
+  }
+}
+
+/* Nav Styling */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+  box-shadow: hsl(0, 0%, 80%) 0 0 10px;
+  padding: 1.5em 1em;
+}
+nav > a {
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: Helvetica;
+  text-decoration: none;
+  color: #7acbc4;
+}
+.nav-links ul {
+  display: flex;
+  gap: 0.5em;
+}
+.nav-links ul li {
+  list-style-type: none;
+}
+.nav-links ul li a {
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #000;
+}
+.btn-link {
+  background: #0554f2;
+  color: #fff !important;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: 2px solid orange;
+}
+.cart-total {
+  background: #c1000f;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 50px;
+}
+
+#auth-error {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 0.4em;
+  font-family: Helvetica;
+  font-weight: 300;
 }
