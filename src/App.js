@@ -3,16 +3,17 @@ import { useState } from "react";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Nav from "./components/Nav";
-import { UserContext } from "./contexts/UserContext";
+import { Context } from "./contexts/Context";
 
 
 function App() {
   const obj = JSON.parse(localStorage.getItem("userToken"))
   const defaultUser = ("userToken" in localStorage) ? obj : {};
   const [user, setUser] = useState(defaultUser);
+  const [products, setProducts] = useState([]);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <Context.Provider value={{ user, setUser, products, setProducts }}>
       <BrowserRouter>
         <Nav />
         <Routes>
@@ -22,7 +23,7 @@ function App() {
             path="/login" element={ <LoginPage /> } />
         </Routes>
       </BrowserRouter>
-    </UserContext.Provider>
+    </Context.Provider>
   );
 }
 

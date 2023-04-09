@@ -1,15 +1,15 @@
 import "../index.css";
 import { Link } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import { Context } from "../contexts/Context";
 import { useContext } from "react";
 
 
 function Nav(props) {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, products } = useContext(Context);
 
   const handleLogout = e => {
     e.preventDefault();
-    localStorage.clear();
+    localStorage.removeItem("userToken");
     setUser({});
   };
 
@@ -20,7 +20,7 @@ function Nav(props) {
         <ul>
           <li>
             <Link to="/">
-              Cart<sup className="cart-total">0</sup>
+              Cart<sup className="cart-total">{ products.filter(product => product.quantity > 0).length }</sup>
             </Link>
           </li>
           <li>

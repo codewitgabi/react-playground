@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Product from "../components/Product";
 import "../index.css";
-import { UserContext } from "../contexts/UserContext";
+import { Context } from "../contexts/Context";
 
 
 function HomePage() {
-  const [products, setProducts] = useState([]);
-  const { user } = useContext(UserContext);
+  const { user, products, setProducts } = useContext(Context);
 
   const getProducts = () => {
     fetch("http://localhost:8000/products/")
@@ -14,6 +13,13 @@ function HomePage() {
     .then(data => {
       setProducts(data);
     })
+  };
+
+  const handleAddToCart = product => {
+    const newProduct = [...products];
+    const index = newProduct.indexOf(product);
+    newProduct[index].quantity++;
+    setProducts(newProduct);
   };
 
   useEffect(() => {
@@ -33,13 +39,11 @@ function HomePage() {
               <div className="col">
                 <Product
                   key={ product.id }
-                  image={ product.image }
-                  name={ product.name }
-                  price={ product.price }
-                  tag={ product.category }
+                  product={ product }
+                  onClick={ handleAddToCart }
                 />
               </div>
-            ); 
+            );
           })) :
           (
             <div>

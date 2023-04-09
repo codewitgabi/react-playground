@@ -1,11 +1,11 @@
 import "../form.css";
 import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { Context } from "../contexts/Context";
 import { useNavigate } from "react-router-dom";
 
 
 function LoginPage() {
-  const { setUser } = useContext(UserContext);
+  const { setUser } = useContext(Context);
   const navigate = useNavigate();
 
   const handleSubmit = e => {

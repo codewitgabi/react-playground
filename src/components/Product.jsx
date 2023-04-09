@@ -1,22 +1,22 @@
 import "../index.css";
 
-function Product(props) {
+function Product({ product, onClick }) {
   return (
     <div className="product-container">
       <img
         className="product-image"
-        src={ props.image }
+        src={ product.image }
         alt="product"
       />
       <hr className="hr" />
-      <legend className="prod-name">{ props.name }</legend>
-      <small align="center">${ props.price }</small>
+      <legend className="prod-name">{ product.name }</legend>
+      <small align="center">${ product.price }</small>
       <div align="center">
-        <button className="add-to-cart">
-          Cart <span>+</span>
+        <button onClick={ () => onClick(product) } className="add-to-cart">
+          Cart <span>{ product.quantity }</span>
         </button>
       </div>
-      <span className="tag">{ props.tag }</span>
+      <span className="tag">{ product.category }</span>
     </div>
   );
 }
