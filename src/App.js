@@ -3,6 +3,7 @@ import { useState } from "react";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Nav from "./components/Nav";
+import RegisterPage from "./pages/RegisterPage";
 import { Context } from "./contexts/Context";
 
 
@@ -21,6 +22,8 @@ function App() {
             path="/" element={ <HomePage /> } />
           <Route
             path="/login" element={ <LoginPage /> } />
+          <Route
+            path="/signup" element={ <RegisterPage /> } />
         </Routes>
       </BrowserRouter>
     </Context.Provider>

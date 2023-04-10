@@ -1,7 +1,7 @@
 import "../form.css";
 import { useContext } from "react";
 import { Context } from "../contexts/Context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 function LoginPage() {
@@ -10,7 +10,7 @@ function LoginPage() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const login_url = "http://localhost:8000/login/";
+    const login_url = "http://localhost:8000/api/login/";
     /* Get Form Data */
     const username = e.target.username.value;
     const password = e.target.password.value;
@@ -74,6 +74,9 @@ function LoginPage() {
         />
         <button type="submit" className="auth-btn">Sign In</button>
       </form>
+      <div align="center">
+        <p>Not signed up yet! <Link to="/signup"> Signup</Link></p>
+      </div>
     </div>
   );
 }

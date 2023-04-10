@@ -8,7 +8,7 @@ function HomePage() {
   const { user, products, setProducts } = useContext(Context);
 
   const getProducts = () => {
-    fetch("http://localhost:8000/products/")
+    fetch("http://localhost:8000/api/products/")
     .then(response => response.json())
     .then(data => {
       setProducts(data);
