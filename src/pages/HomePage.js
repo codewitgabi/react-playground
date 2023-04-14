@@ -24,6 +24,7 @@ function HomePage() {
 
   useEffect(() => {
     getProducts();
+    // eslint-disable-next-line
   }, [])
 
   return (

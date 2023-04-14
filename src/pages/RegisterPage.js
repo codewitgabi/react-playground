@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function RegisterPage(props) {
+  const navigate = useNavigate();
+
   const handleRegister = e => {
     e.preventDefault();
 
@@ -9,10 +11,26 @@ function RegisterPage(props) {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    fetch("http://localhost:8000/api/register/")
+    fetch("http://localhost:8000/api/register/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: username,
+        email: email,
+        password: password
+      })
+    })
     .then(resp => resp.json())
     .then(data => {
-      alert(data);
+      if ("username" in data && data.username.constructor.name === "Array") {
+        document.getElementById("auth-error").textContent = data.username[0];
+      } else if ("password" in data && data.password.constructor.name === "Array") {
+        document.getElementById("auth-error").textContent = data.password[0];
+      } else {
+          navigate("/login");
+      }
     })
     .catch(error => alert(error))
 
@@ -22,7 +40,7 @@ function RegisterPage(props) {
   return (
     <div className="form-wrapper">
       <legend className="title">Sign Up</legend>
-      <p className="auth-error"></p>
+      <p id="auth-error"></p>
       <form method="post" onSubmit={ handleRegister }>
         <p>Username<span>*</span></p>
         <input
