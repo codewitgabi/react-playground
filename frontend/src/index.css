@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --primary-background: #121212;
+    --secondary-background: #1c1c1c;
+    --primary-color: #fff;
+    --secondary-color: #fafafa;
+    --yellow: #F9F871;
+    --gap: 1em;
+  }
+
+  body {
+    background: var(--primary-background);
+    color: #aeb7c7;
+    font-family: "Nunito", sans-serif;
+  }
+
+  .body-secondary {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  footer {
+    margin-top: auto;
+  }
+  .body {
+    flex: 1;
+  }
+}
