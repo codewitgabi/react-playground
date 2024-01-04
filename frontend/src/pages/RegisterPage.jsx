@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { EyeSlash } from "react-bootstrap-icons";
 import NavBar from "../components/NavBar";
@@ -6,6 +7,7 @@ const SERVER_ROOT = import.meta.env.VITE_SERVER_ROOT;
 
 function RegisterPage() {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +28,14 @@ function RegisterPage() {
     if (response.ok) {
       navigate("/auth/verify-otp");
     } else {
-      console.log(response);
-      alert("An error occured");
+      const error = await response.json();
+      console.log(error)
+
+      if (error.email) {
+        setError(error?.message || "A user with this email already exists");
+      } else if (error.password) {
+        setError("Password must have 10 characters minimum and contain characters and numbers.")
+      }
     }
   };
 
@@ -35,8 +43,9 @@ function RegisterPage() {
     <>
       <NavBar />
 
-      <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em]">
+      <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em] md:w-3/5 md:mx-auto">
         <h3 className="text-[1.2rem] mb-[1em]">Create personal account</h3>
+        <p className="text-red-500 text-[0.9rem] mb-2">{ error }</p>
         <form method="post" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>

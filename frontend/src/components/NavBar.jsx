@@ -4,7 +4,7 @@ import { Cart2 } from "react-bootstrap-icons";
 function NavBar() {
   return (
     <header className="bg-bgSecondary">
-      <nav className="px-[1.5em] py-[1em] flex justify-between items-center">
+      <nav className="px-[1.5em] py-[1em] flex justify-between items-center md:w-11/12 md:mx-auto">
         <Link to="/">GShop</Link>
         <div className="flex gap-[0.5em] items-center">
           <Link to="/auth/login">Login</Link>

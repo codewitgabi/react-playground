@@ -35,7 +35,7 @@ function verifyOTP() {
     <>
       <NavBar />
 
-      <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em]">
+      <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em] md:w-3/5 md:mx-auto">
         <h3 className="text-[1.2rem] mb-[1em]">Verify Account</h3>
         <p className="text-red-500 text-[0.9rem] mb-2">{error}</p>
         <form method="post" onSubmit={handleSubmit}>

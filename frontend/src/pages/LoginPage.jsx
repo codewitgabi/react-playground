@@ -1,15 +1,47 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { EyeSlash } from "react-bootstrap-icons";
 import NavBar from "../components/NavBar";
 
-function LoginPage() {
+const SERVER_ROOT = import.meta.env.VITE_SERVER_ROOT;
+
+function LoginPage({ setUser }) {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const response = await fetch(`${SERVER_ROOT}/api/login/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    })
+
+    if (response.ok) {
+      const data = await response.json();
+      setUser(data);
+      navigate("/");
+    } else {
+      const error = await response.json();
+      setError(error?.message || "Incorrect email or password");
+    }
+  };
+
   return (
     <>
       <NavBar />
 
-      <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em]">
+      <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em] md:w-3/5 md:mx-auto">
         <h3 className="text-[1.2rem] mb-[1em]">Login to your account</h3>
-        <form method="post">
+        <p className="mb-2 text-[0.9rem] text-red-500">{ error }</p>
+        <form method="post" onSubmit={ handleSubmit }>
           <div>
             <label htmlFor="email">Email</label>
             <input

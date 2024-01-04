@@ -6,7 +6,7 @@ import ProductCard from "../components/ProductCard";
 
 const SERVER_ROOT = import.meta.env.VITE_SERVER_ROOT;
 
-function HomePage() {
+function HomePage({ user }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function HomePage() {
     <div className="body-secondary">
       <NavBar />
       <div className="body mx-[1em] my-[2em]">
-        <div className="grid grid-cols-2 gap-x-[1em] gap-y-[1em]">
+        <div className="grid grid-cols-2 gap-x-[1em] gap-y-[1em] md:w-4/5 md:mx-auto md:grid-cols-3 lg:grid-cols-4">
           {products ? (
             products.map((product) => {
               return <ProductCard key={product.id} product={product} />;
@@ -37,6 +37,7 @@ function HomePage() {
         </div>
         <ModeSwitch />
       </div>
+      {/* <p>Logged in as { user?.username || "Anonymous" }</p> */}
       <Footer />
     </div>
   );
