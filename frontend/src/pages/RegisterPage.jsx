@@ -1,15 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { EyeSlash } from "react-bootstrap-icons";
 import NavBar from "../components/NavBar";
 
+const SERVER_ROOT = import.meta.env.VITE_SERVER_ROOT;
+
 function RegisterPage() {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const username = form.username.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const response = await fetch(`${SERVER_ROOT}/api/register/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, email, password }),
+    });
+    if (response.ok) {
+      navigate("/auth/verify-otp");
+    } else {
+      console.log(response);
+      alert("An error occured");
+    }
+  };
+
   return (
     <>
       <NavBar />
 
       <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em]">
         <h3 className="text-[1.2rem] mb-[1em]">Create personal account</h3>
-        <form method="post">
+        <form method="post" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>
             <input

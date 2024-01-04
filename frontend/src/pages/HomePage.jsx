@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import ModeSwitch from "../components/ModeSwitch";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 
-const SERVER_ROOT = "http://localhost:8000";
+const SERVER_ROOT = import.meta.env.VITE_SERVER_ROOT;
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -26,13 +27,15 @@ function HomePage() {
       <NavBar />
       <div className="body mx-[1em] my-[2em]">
         <div className="grid grid-cols-2 gap-x-[1em] gap-y-[1em]">
-          {products ?
+          {products ? (
             products.map((product) => {
               return <ProductCard key={product.id} product={product} />;
-            }) :
+            })
+          ) : (
             <h1>No products at the moment</h1>
-          }
+          )}
         </div>
+        <ModeSwitch />
       </div>
       <Footer />
     </div>
