@@ -4,7 +4,9 @@ function Footer() {
   return (
     <footer className="bg-bgSecondary p-[1.5em] flex flex-col gap-[2em] md:gap-[6em]">
       <div className="flex flex-col gap-[2em] md:flex-row md:justify-around">
-        <Link to="/">GShop</Link>
+        <Link to="/" className="text-textYellow">
+          Binshop
+        </Link>
 
         <div className="flex flex-col">
           <h3 className="text-[1.1rem] mb-[1em] text-textSecondary font-bold md:mb-[1.5em]">
@@ -68,7 +70,7 @@ function Footer() {
       <div>
         <hr className="h-[0.1px] bg-textSecondary border-none mb-[1em] md:mb-[2em]" />
         <p className="text-[0.85rem] text-center">
-          Copyright &copy; 2024 gshop. All Rights Reserved
+          Copyright &copy; 2024 Binshop. All Rights Reserved
         </p>
       </div>
     </footer>

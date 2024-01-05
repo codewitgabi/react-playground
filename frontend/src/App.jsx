@@ -7,14 +7,21 @@ import VerifyOTP from "./pages/VerifyOTP";
 
 function ShopApp() {
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState([]);
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage user={ user } />} />
-        <Route path="/auth/register" element={<RegisterPage />} />
-        <Route path="/auth/login" element={<LoginPage setUser={ setUser } />} />
-        <Route path="auth/verify-otp" element={<VerifyOTP />} />
+        <Route
+          path="/"
+          element={<HomePage user={user} cart={cart} setCart={setCart} />}
+        />
+        <Route path="/auth/register" element={<RegisterPage cart={cart} />} />
+        <Route
+          path="/auth/login"
+          element={<LoginPage setUser={setUser} cart={cart} />}
+        />
+        <Route path="auth/verify-otp" element={<VerifyOTP cart={cart} />} />
       </Routes>
     </>
   );

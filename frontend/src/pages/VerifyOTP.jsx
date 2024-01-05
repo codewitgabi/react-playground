@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 
 const SERVER_ROOT = import.meta.env.VITE_SERVER_ROOT;
 
-function verifyOTP() {
+function verifyOTP({ cart }) {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
@@ -33,7 +33,7 @@ function verifyOTP() {
 
   return (
     <>
-      <NavBar />
+      <NavBar cart={cart} />
 
       <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em] md:w-3/5 md:mx-auto">
         <h3 className="text-[1.2rem] mb-[1em]">Verify Account</h3>

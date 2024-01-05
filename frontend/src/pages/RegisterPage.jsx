@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 
 const SERVER_ROOT = import.meta.env.VITE_SERVER_ROOT;
 
-function RegisterPage() {
+function RegisterPage({ cart }) {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
@@ -29,23 +29,25 @@ function RegisterPage() {
       navigate("/auth/verify-otp");
     } else {
       const error = await response.json();
-      console.log(error)
+      console.log(error);
 
       if (error.email) {
         setError(error?.message || "A user with this email already exists");
       } else if (error.password) {
-        setError("Password must have 10 characters minimum and contain characters and numbers.")
+        setError(
+          "Password must have 10 characters minimum and contain characters, numbers and symbols",
+        );
       }
     }
   };
 
   return (
     <>
-      <NavBar />
+      <NavBar cart={cart} />
 
       <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em] md:w-3/5 md:mx-auto">
         <h3 className="text-[1.2rem] mb-[1em]">Create personal account</h3>
-        <p className="text-red-500 text-[0.9rem] mb-2">{ error }</p>
+        <p className="text-red-500 text-[0.9rem] mb-2">{error}</p>
         <form method="post" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>
@@ -80,7 +82,7 @@ function RegisterPage() {
           </div>
 
           <p className="mt-4 text-[0.8rem]">
-            By creating an account, I agree to Binance&apos;s{" "}
+            By creating an account, I agree to Binshop&apos;s{" "}
             <Link to="/" className="underline text-textYellow">
               Terms of Service
             </Link>{" "}

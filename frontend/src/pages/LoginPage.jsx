@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 
 const SERVER_ROOT = import.meta.env.VITE_SERVER_ROOT;
 
-function LoginPage({ setUser }) {
+function LoginPage({ setUser, cart }) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -19,10 +19,10 @@ function LoginPage({ setUser }) {
     const response = await fetch(`${SERVER_ROOT}/api/login/`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password })
-    })
+      body: JSON.stringify({ email, password }),
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -36,12 +36,12 @@ function LoginPage({ setUser }) {
 
   return (
     <>
-      <NavBar />
+      <NavBar cart={cart} />
 
       <div className="mx-[1.5em] mt-[2em] bg-bgSecondary p-[1em] md:w-3/5 md:mx-auto">
         <h3 className="text-[1.2rem] mb-[1em]">Login to your account</h3>
-        <p className="mb-2 text-[0.9rem] text-red-500">{ error }</p>
-        <form method="post" onSubmit={ handleSubmit }>
+        <p className="mb-2 text-[0.9rem] text-red-500">{error}</p>
+        <form method="post" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>
             <input
