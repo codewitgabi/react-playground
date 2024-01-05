@@ -82,7 +82,7 @@ function RegisterPage({ cart }) {
           </div>
 
           <p className="mt-4 text-[0.8rem]">
-            By creating an account, I agree to Binshop&apos;s{" "}
+            By creating an account, I agree to Binstore&apos;s{" "}
             <Link to="/" className="underline text-textYellow">
               Terms of Service
             </Link>{" "}

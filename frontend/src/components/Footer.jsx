@@ -5,7 +5,7 @@ function Footer() {
     <footer className="bg-bgSecondary p-[1.5em] flex flex-col gap-[2em] md:gap-[6em]">
       <div className="flex flex-col gap-[2em] md:flex-row md:justify-around">
         <Link to="/" className="text-textYellow">
-          Binshop
+          Binstore
         </Link>
 
         <div className="flex flex-col">

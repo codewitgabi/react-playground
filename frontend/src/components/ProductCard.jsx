@@ -8,8 +8,9 @@ function ProfileCard({ user, product, cart, setCart }) {
     if (!user) {
       navigate("/auth/login");
     }
-
-    setCart([...cart, productId]);
+    else {
+      setCart([...cart, productId]);
+    }
   };
 
   return (
